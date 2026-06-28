@@ -1,9 +1,8 @@
-import { PiggyBank } from 'lucide-react';
-import { createBrowserRouter } from 'react-router-dom';
-import { Button } from './components/shared/Button';
-import { RootLayout } from './components/Layout/RootLayout';
 
-//import { SimulationFormPage } from './pages/SimulationFormPage';
+import { createBrowserRouter } from 'react-router-dom';
+
+import { RootLayout } from './components/Layout/RootLayout';
+import { SimulationFormPage } from './pages/SimulationFormPage';
 //import { SimulationResultsPage } from './pages/SimulationResultsPage';
 
 export const router = createBrowserRouter([
@@ -15,13 +14,10 @@ export const router = createBrowserRouter([
         element: (
           <>
             <h1>formulario de simulaçao</h1>
-            <Button
-              variant= 'primary' icon={PiggyBank} className='w-full'
-            >
-              clique aqui
-            </Button>
+        
+            <SimulationFormPage />
           </>
-        ), //<SimulationFormPage />,
+        ),
       },
       {
         path: '/resultado/:id',
