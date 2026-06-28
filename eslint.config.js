@@ -12,21 +12,21 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx,js,jsx}'],
-    plugins: {
-      'simple-import-sort': simpleImportSort,
-      import: importPlugin,
-      prettier: prettierPlugin,
-    },
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs.flat.recommended,
+      ...tseslint.configs.recommended,
+      reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
     ],
+    plugins: {
+      prettier: prettierPlugin,
+      import: importPlugin,
+      'simple-import-sort': simpleImportSort,
+    },
     languageOptions: {
-      globals: globals.browser,
       ecmaVersion: 'latest',
       sourceType: 'module',
+      globals: globals.browser,
     },
     settings: {
       'import/resolver': {
@@ -37,7 +37,15 @@ export default defineConfig([
     },
     rules: {
       'simple-import-sort/imports': 'error',
-      'prettier/prettier': 'error',
+
+      'prettier/prettier': [
+        'error',
+        {
+          singleQuote: true,
+          semi: true,
+          endOfLine: 'auto',
+        },
+      ],
     },
   },
 ]);
