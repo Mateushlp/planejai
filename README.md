@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# 💰 Planeja.I - Educador Financeiro Inteligente
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Planeja.I](./src/assets/preview.png)
 
-Currently, two official plugins are available:
+## 📌 Sobre o projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O **Planeja.I** é uma aplicação de educação financeira inteligente criada para ajudar pessoas a organizarem sua vida financeira, planejarem metas e tomarem melhores decisões através de uma análise personalizada utilizando Inteligência Artificial.
 
-## React Compiler
+A aplicação permite que o usuário informe sua realidade financeira, receba um diagnóstico gerado por IA e converse com um Educador Financeiro Inteligente para tirar dúvidas e receber orientações.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📊 Simulação financeira
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Cadastro de renda mensal
+- Cadastro de custos fixos
+- Cadastro de dívidas
+- Criação de metas financeiras
+- Cálculo de economia mensal necessária
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+### 🤖 Análise financeira com Inteligência Artificial
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Integração com Google Gemini API para gerar:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+- Diagnóstico financeiro personalizado
+- Análise de viabilidade da meta
+- Sugestões para melhorar a organização financeira
+- Ideias de renda extra
+- Sugestões de investimentos
+- Mensagem motivacional personalizada
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+---
+
+### 💬 Educador Financeiro com IA
+
+O usuário pode conversar com a inteligência artificial:
+
+- Fazer perguntas sobre sua situação financeira
+- Receber recomendações personalizadas
+- Continuar conversas anteriores
+
+---
+
+### 📝 Histórico de simulações
+
+Sistema de armazenamento local que permite:
+
+- Salvar simulações realizadas
+- Visualizar resultados anteriores
+- Excluir simulações
+- Manter histórico de conversas com a IA
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+### Front-end
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+
+### Integrações
+
+- Google Gemini API
+
+### Ferramentas
+
+- Git
+- GitHub
+- LocalStorage
+
+---
+
+## 🏗️ Estrutura do projeto
