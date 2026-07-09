@@ -1,5 +1,5 @@
 import { Button } from '@/components/shared/Button';
-import type { InputProps } from '@/components/shared/Input';
+import { Input, type InputProps } from '@/components/shared/Input';
 import { formatCurrencyMask } from '@/utils/currency';
 import { ArrowLeft, ArrowRight, type LucideIcon } from 'lucide-react';
 import { useState, type SyntheticEvent } from 'react';
@@ -32,7 +32,7 @@ export function FormStep({
   onNext,
   hideBackButton,
 }: FormStepProps & ActionsButtonsProps) {
-  const [inputValue, setInputValue] = useState(' ');
+  const [inputValue, setInputValue] = useState('');
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (!inputValue) {
@@ -52,10 +52,22 @@ export function FormStep({
         {question}
       </h3>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
+        <Input
           {...inputProps}
           value={inputValue}
-          onChange={(e) => setInputValue(formatCurrencyMask(e.target.value))}
+          onChange={(e) => {
+            if (inputProps.type === 'number') {
+              setInputValue(e.target.value);
+              return;
+            }
+
+            if (inputProps.prefix === 'R$') {
+              setInputValue(formatCurrencyMask(e.target.value));
+              return;
+            }
+
+            setInputValue(e.target.value);
+          }}
         />
         <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
           {!hideBackButton && (

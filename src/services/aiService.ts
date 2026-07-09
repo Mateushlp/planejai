@@ -8,29 +8,30 @@ interface GeminiResponse {
 
 export interface InsightData {
   feasibility: {
-    status: 'viable' | 'needs_adjustment' | 'unfeasible'
-    content: string
-  }
+    status: 'viavel' | 'needs_adjustment' | 'unfeasible';
+    content: string;
+  };
   diagnosis: {
-    content: string
-  }
+    content: string;
+  };
   suggestions: {
-    items: string[]
-  }
+    items: string[];
+  };
   extraIncome: {
-    items: string[]
-  }
+    items: string[];
+  };
   investment: {
-    items: string[]
-  }
+    items: string[];
+  };
   motivation: {
-    content: string
-  }
+    content: string;
+  };
 }
 
-const API_KEY = String(import.meta.env.VITE_GEMINI_API_KEY)
-const MODEL_NAME = 'gemini-flash-latest'
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const MODEL_NAME = 'gemini-2.0-flash';
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`
+console.log('API KEY:', import.meta.env.VITE_GEMINI_API_KEY);
 
 const callGeminiAPI = async (prompt: string) => {
   const response = await fetch(GEMINI_API_URL, {
@@ -49,7 +50,13 @@ const callGeminiAPI = async (prompt: string) => {
 }
 
 export const getInsight = async (prompt: string) => {
-  const response = await callGeminiAPI(prompt)
-  const json = response.candidates[0].content.parts[0].text
-  return JSON.parse(json) as InsightData
-}
+  const response = await callGeminiAPI(prompt);
+
+  console.log('GEMINI RESPONSE:', response);
+
+  const text = response.candidates[0].content.parts[0].text;
+
+  console.log('TEXTO GEMINI:', text);
+
+  return JSON.parse(text) as InsightData;
+};

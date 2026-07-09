@@ -9,8 +9,7 @@ import {
 
 // Local placeholder type for InsightData to avoid unresolved path during build.
 // Replace or remove if a proper service type is available in the project.
-type InsightData = unknown;
-
+import type { InsightData } from '@/services/aiService';
 import type { FormStepProps } from '../components/features/Simulation/FormStep';
 
 export const simulationFormSteps = [
@@ -94,6 +93,14 @@ export type SimulationFormData = Record<
   (typeof simulationFormSteps)[number]['id'],
   string
 >;
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  createdAt: string;
+}
+
 
 export type SimulationRecord = SimulationFormData & {
   id: string;

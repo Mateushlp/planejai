@@ -6,7 +6,7 @@ import { useSimulationStorage } from '@/hooks/useSimulationStorage';
 import { getInsight, type InsightData } from '@/services/aiService';
 
 export const useInsight = (id: string) => {
-  const isRequestPending = useRef(false);
+const isRequestPending = useRef(true);
   const { getFormData, updateSimulation } = useSimulationStorage();
 
   const [insight, setInsight] = useState<InsightData | null>(() => {
@@ -42,11 +42,13 @@ export const useInsight = (id: string) => {
         const data = await getInsight(prompt);
         setInsight(data);
 
-        updateSimulation(simulationId, {
+        updateSimulation({
           ...simulation,
           insight: data,
         } as SimulationRecord);
-      } catch {
+      } catch (error) {
+        console.error('ERRO GEMINI:', error);
+
         setError('Erro ao gerar o diagnóstico. Tente novamente.');
       } finally {
         isRequestPending.current = false;

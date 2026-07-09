@@ -5,7 +5,7 @@ import type { SimulationRecord } from './simulation'
 
 const RESPONSE_SCHEMA = `{
   "feasibility": {
-    "status": "viable" | "needs_adjustment" | "unfeasible",
+    "status": "viavel" | "needs_adjustment" | "unfeasible",
     "content": "<Análise objetiva sobre se a meta é atingível no prazo com o valor disponível. Mencione os números relevantes.>"
   },
   "diagnosis": {
@@ -23,7 +23,7 @@ const RESPONSE_SCHEMA = `{
   "motivation": {
     "content": "<Mensagem final motivacional e personalizada, citando a meta pelo nome.>"
   }
-}`
+}`;
 
 export function buildAIPrompt(simulation: SimulationRecord) {
   const { income, expenses, debts, goalName, goalAmount, goalDeadline } =
@@ -60,7 +60,7 @@ export function buildAIPrompt(simulation: SimulationRecord) {
     - Não repita informações entre seções
     - Nunca use markdown dentro dos valores do JSON
     - Para o campo "feasibility.status", use os seguintes critérios:
-      - "viable": saldo após reserva para a meta é maior ou igual a 0
+      - "viavel": saldo após reserva para a meta é maior ou igual a 0
       - "needs_adjustment": saldo negativo de até 20% do valor da economia mensal necessária
-      - "unfeasible": saldo negativo superior a 20% do valor da economia mensal necessária`
+      - "unfeasible": saldo negativo superior a 20% do valor da economia mensal necessária`;
 }

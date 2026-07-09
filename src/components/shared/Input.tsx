@@ -19,12 +19,12 @@ export function Input({ prefix, suffix, ...rest }: InputProps) {
         </>
       )}
       <input
-        className="text-foreground placeholder:text-muted-foreground w-full bg-transparent text-sm outline-none"
+        className="placeholder:text-muted-foreground w-full appearance-none bg-transparent text-foreground outline-none"
         autoFocus
         {...rest}
       />
       {suffix && (
-        <> 
+        <>
           <Divider orientation="vertical" />
           <span className="text-muted-foreground text-sm font-medium">
             {suffix}
@@ -32,5 +32,5 @@ export function Input({ prefix, suffix, ...rest }: InputProps) {
         </>
       )}
     </div>
-  )
+  );
 }
