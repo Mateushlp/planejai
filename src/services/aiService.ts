@@ -29,25 +29,36 @@ export interface InsightData {
 }
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const MODEL_NAME = 'gemini-2.0-flash';
+const MODEL_NAME = 'gemini-3.5-flash';
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`
 
 
 const callGeminiAPI = async (prompt: string) => {
   const response = await fetch(GEMINI_API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
+      contents: [
+        {
+          parts: [{ text: prompt }],
+        },
+      ],
     }),
-  })
+  });
 
   if (!response.ok) {
-    throw new Error(`Erro na requisição: ${response.status}`)
+    const error = await response.text();
+
+    console.error('STATUS:', response.status);
+    console.error('ERRO:', error);
+
+    throw new Error(`Erro ${response.status}`);
   }
 
-  return (await response.json()) as GeminiResponse
-}
+  return (await response.json()) as GeminiResponse;
+};
 
 export const getInsight = async (prompt: string) => {
   const response = await callGeminiAPI(prompt);

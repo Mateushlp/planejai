@@ -6,7 +6,7 @@ import { useSimulationStorage } from '@/hooks/useSimulationStorage';
 import { getInsight, type InsightData } from '@/services/aiService';
 
 export const useInsight = (id: string) => {
-const isRequestPending = useRef(true);
+  const isRequestPending = useRef(false);
   const { getFormData, updateSimulation } = useSimulationStorage();
 
   const [insight, setInsight] = useState<InsightData | null>(() => {
@@ -47,7 +47,9 @@ const isRequestPending = useRef(true);
           insight: data,
         } as SimulationRecord);
       } catch (error) {
-        console.error('ERRO GEMINI:', error);
+  console.error("ERRO COMPLETO:", error);
+
+  setError("Erro ao gerar o diagnóstico. Tente novamente.");
 
         setError('Erro ao gerar o diagnóstico. Tente novamente.');
       } finally {
@@ -59,13 +61,21 @@ const isRequestPending = useRef(true);
   );
 
   useEffect(() => {
-    // Evita loop infinito de requisições para a API do Gemini
+    console.log('useEffect executou');
+
     if (insight || isLoading || error || isRequestPending.current) {
+      console.log('Não vai buscar insight');
       return;
     }
 
+    console.log('Buscando insight...');
     fetchInsight(id);
   }, [id, insight, isLoading, error, fetchInsight]);
 
-  return { insight, isLoading, error, fetchInsight };
+  return {
+    insight,
+    isLoading,
+    error,
+    fetchInsight,
+  };
 };
